@@ -1,0 +1,27 @@
+{% extends "users/base_users.html" %}
+{% block content %}
+<body>
+    <div class="login-form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Log in">
+            </div>
+            <div class="form-group">
+                <a href="{% url 'home' %}" class="button">Back to Home</a>
+            </div>
+            <div class="form-group">
+                <a href="{% url 'register' %}" class="button">Don't have an account? Register!</a>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock content %}
