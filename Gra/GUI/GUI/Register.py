@@ -9,6 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
+from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Ui_RegisterWindow(object):
@@ -67,6 +70,8 @@ class Ui_RegisterWindow(object):
         self.statusbar = QtWidgets.QStatusBar(RegisterWindow)
         self.statusbar.setObjectName("statusbar")
         RegisterWindow.setStatusBar(self.statusbar)
+        self.reg_regbutton_2.clicked.connect(self.register_clicked)
+        self.reg_cancelbutton_2.clicked.connect(self.exit)
 
         self.retranslateUi(RegisterWindow)
         QtCore.QMetaObject.connectSlotsByName(RegisterWindow)
@@ -85,6 +90,30 @@ class Ui_RegisterWindow(object):
         self.password_label_4.setText(_translate("RegisterWindow", "Password:"))
         self.reg_pass_label_2.setText(_translate("RegisterWindow", "Password:"))
 
+    def register_clicked(self):
+        register_url = 'http://127.0.0.1:8000/users/register_gui/'
+        username = self.reg_logine_line_2.text()
+        email = self.reg_email_line_2.text()
+        password1 = self.reg_passline_2.text()
+        password2 = self.reg_confirm_line_2.text()
+        data = {
+            'username': username,
+            'email' : email,
+            'password1': password1,
+            'password2': password2
+        }
+        response = requests.post(register_url, data=data)
+        if response.status_code == 201:
+            QMessageBox.information(self.centralwidget.window(), "Registration Success", "Registration successful!")
+            print("reg")
+
+        elif response.status_code == 400:
+            print("Form not validated")
+        else:
+            print("Error")
+
+    def exit(self):
+        self.centralwidget.window().close()
 
 if __name__ == "__main__":
     import sys
