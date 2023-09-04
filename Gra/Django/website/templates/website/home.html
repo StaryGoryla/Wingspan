@@ -1,6 +1,13 @@
 {% extends "website/base_web.html" %}
 {% block content %}
     <div class="container">
-        <p>Home<p>
+        <h2>Home</h2>
+        <ul>
+            {% for user in logged_in_users %}
+                <li>{{ user.username }}</li>
+            {% empty %}
+                <li>Nikt nie jest zalogowany.</li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock content %}
