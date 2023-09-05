@@ -11,7 +11,6 @@ from django.contrib.auth import authenticate
 from rest_framework import status
 
 
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -43,6 +42,12 @@ def logout(request):
 
 
 @api_view(['GET', 'POST'])
+def logout_gui(request):
+    auth_logout(request)
+    return Response({'message': 'Logged out'}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', 'POST'])
 def login_gui(request, *args, **kwargs):
     username = request.data.get('username')
     password = request.data.get('password')
@@ -51,6 +56,7 @@ def login_gui(request, *args, **kwargs):
         return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
     else:
         return Response({'message': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 @api_view(['GET', 'POST'])
 def register_gui(request, *args, **kwargs):
@@ -61,12 +67,9 @@ def register_gui(request, *args, **kwargs):
     if password1 != password2:
         return Response({'error': 'Passwords do not match'}, status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.data)
         if form.is_valid():
             form.save()
-    return Response(status=status.HTTP_201_CREATED)
-
-@api_view(['GET', 'POST'])
-def logout_gui(request):
-    auth_logout(request)
-    return Response({'message': 'Logged out'}, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)

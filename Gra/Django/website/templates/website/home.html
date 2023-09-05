@@ -3,11 +3,7 @@
     <div class="container">
         <h2>Home</h2>
         <ul>
-            {% for user in logged_in_users %}
-                <li>{{ user.username }}</li>
-            {% empty %}
-                <li>Nikt nie jest zalogowany.</li>
-            {% endfor %}
+            {{ request.online_now }}
         </ul>
     </div>
 {% endblock content %}
