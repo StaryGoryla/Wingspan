@@ -46,6 +46,12 @@ class Ui_MainWindow(object):
         self.game_label.setFont(font)
         self.game_label.setAlignment(QtCore.Qt.AlignCenter)
         self.game_label.setObjectName("game_label")
+        self.channel_line = QtWidgets.QLineEdit(self.Game)
+        self.channel_line.setGeometry(QtCore.QRect(320, 340, 181, 31))
+        self.channel_line.setObjectName("channel_line")
+        self.channelbutton = QtWidgets.QPushButton(self.Game)
+        self.channelbutton.setGeometry(QtCore.QRect(510, 340, 75, 41))
+        self.channelbutton.setObjectName("channelbutton")
         self.stackedWidget.addWidget(self.Game)
         self.Profile = QtWidgets.QWidget()
         self.Profile.setObjectName("Profile")
@@ -118,7 +124,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -126,9 +132,11 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.home_label.setText(_translate("MainWindow", "Home page"))
         self.status_label.setText(_translate("MainWindow", "The server seems to be offliine. Please check your connection or call me +48 720 802 418"))
-        self.game_label.setText(_translate("MainWindow", "Stats"))
-        self.profile_label.setText(_translate("MainWindow", "Game"))
-        self.stats_label.setText(_translate("MainWindow", "Profile"))
+        self.game_label.setText(_translate("MainWindow", "Game"))
+        self.channel_line.setText(_translate("MainWindow", "What channel do you want to enter?"))
+        self.channelbutton.setText(_translate("MainWindow", "Enter!"))
+        self.profile_label.setText(_translate("MainWindow", "Profile"))
+        self.stats_label.setText(_translate("MainWindow", "Stats"))
         self.homebutton.setText(_translate("MainWindow", "Home"))
         self.statsbutton.setText(_translate("MainWindow", "Stats"))
         self.gamebutton.setText(_translate("MainWindow", "Game"))
@@ -142,3 +150,13 @@ class Ui_MainWindow(object):
         self.login_label.setText(_translate("MainWindow", "Login:"))
         self.registerbutton.setText(_translate("MainWindow", "No account yet? Sign up!"))
         self.login_line.setText(_translate("MainWindow", "login"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

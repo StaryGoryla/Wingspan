@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Home">
      <widget class="QLabel" name="home_label">
@@ -86,10 +86,36 @@
        </font>
       </property>
       <property name="text">
-       <string>Stats</string>
+       <string>Game</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="channel_line">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>340</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>What channel do you want to enter?</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="channelbutton">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>340</y>
+        <width>75</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enter!</string>
       </property>
      </widget>
     </widget>
@@ -109,7 +135,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Game</string>
+       <string>Profile</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -132,7 +158,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Profile</string>
+       <string>Stats</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
