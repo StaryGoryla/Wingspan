@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="container">
+    <h2>Home</h2>
+    <ul>
+            {% for user in online_users %}
+                <li>{{ user.username }}</li>
+            {% empty %}
+                <li>Nikt nie jest zalogowany.</li>
+            {% endfor %}
+        </ul>
+</div>
+</html>
